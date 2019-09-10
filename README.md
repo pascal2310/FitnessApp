@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FitnessTracker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
@@ -25,3 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
+# FitnessApp
+Angular course fitnessApp
+>>>>>>> af5ad854a0241bfb8e5167f4c5567534e41113e1
