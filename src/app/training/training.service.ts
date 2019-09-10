@@ -2,6 +2,7 @@ import { Exercise } from './exercise.model';
 import { Subject, Subscription } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
+import { UIService } from '../shared/ui.service';
 
 @Injectable()
 export class TrainingService{
@@ -15,7 +16,7 @@ export class TrainingService{
     private authSubscriptions: Subscription[] = [];
 
 
-    constructor(private db : AngularFirestore){
+    constructor(private db : AngularFirestore, private uiService: UIService){
         
     }
     
@@ -56,6 +57,8 @@ export class TrainingService{
     }
 
     fetchPastExercises(){
+        this.uiService.loadingStateChanged.next(true);
+
         this.authSubscriptions.push(this.db.collection('finishedExercises').snapshotChanges().map(docArray =>{
             return docArray.map((doc)=> {
                 return { id: doc.payload.doc.id,
@@ -64,6 +67,7 @@ export class TrainingService{
             })
         }).subscribe((exercises:Exercise[])=> {
             this.pastExercises = exercises;
+            this.uiService.loadingStateChanged.next(false);
             this.pastExercisesChanged.next([...this.pastExercises])
             
         }));
