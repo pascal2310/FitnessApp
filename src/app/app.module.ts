@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import{ BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {StoreModule} from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { MaterialModule} from './material.module';
@@ -18,7 +19,7 @@ import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { TrainingModule } from './training/training.module';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-
+import {reducers} from '../app/app.reducer'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
     TrainingModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
