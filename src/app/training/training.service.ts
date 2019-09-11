@@ -32,7 +32,11 @@ export class TrainingService{
             this.availableExercises = exercises,
             this.exercisesChanged.next([...this.availableExercises]);
 
-          }));
+          }, error => {
+            this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 3000),
+            this.uiService.loadingStateChanged.next(null);
+
+        }));
     }
     startExercise(exerciseId: string){
         this.runningExercise = this.availableExercises.find(exercise => exercise.id === exerciseId);
@@ -70,6 +74,10 @@ export class TrainingService{
             this.uiService.loadingStateChanged.next(false);
             this.pastExercisesChanged.next([...this.pastExercises])
             
+        }, error => {
+            this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 3000),
+            this.uiService.loadingStateChanged.next(null);
+
         }));
     }
       getCurrentExercise(){

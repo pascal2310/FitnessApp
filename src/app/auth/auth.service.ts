@@ -38,7 +38,7 @@ export class AuthService{
                 this.uiService.loadingStateChanged.next(false);
             })
             .catch(error => {
-                this.uiService.showSnackbar(error, null, {duration: 3000})
+                this.uiService.showSnackbar(error, null, 3000)
                 this.uiService.loadingStateChanged.next(false);   
             });
     }
@@ -51,7 +51,7 @@ export class AuthService{
                 this.uiService.loadingStateChanged.next(false)
             })
             .catch(error => {
-                this.uiService.showSnackbar(error, null, {duration: 3000})
+                this.uiService.showSnackbar(error, null, 3000)
                 this.uiService.loadingStateChanged.next(false)
             });
     }
