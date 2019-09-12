@@ -12,18 +12,9 @@ import { take } from 'rxjs/operators';
 
 @Injectable()
 export class TrainingService{
-    exerciseChange = new Subject<Exercise>();
-    exercisesChanged = new Subject<Exercise[]>();
-    pastExercisesChanged = new Subject<Exercise[]>();
-
-    private runningExercise: Exercise;
-    private availableExercises: Exercise[] = [];
-    private pastExercises : Exercise[] = [];
     private authSubscriptions: Subscription[] = [];
 
-
-    constructor(private db : AngularFirestore, private uiService: UIService, private store: Store<fromTraining.TrainingState>){
-        
+    constructor(private db : AngularFirestore, private uiService: UIService, private store: Store<fromTraining.TrainingState>){        
     }
     
     fetchAvailableExercises(){
@@ -41,7 +32,7 @@ export class TrainingService{
           }, error => {
             this.store.dispatch(new UI.StopLoading);
             this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 3000),
-            this.exercisesChanged.next(null);
+            this.store.dispatch(new UI.StopLoading);
 
         }));
     }
@@ -91,7 +82,7 @@ export class TrainingService{
         }, error => {
             this.store.dispatch(new UI.StopLoading());
             this.uiService.showSnackbar('Fetching Exercises failed, please try again later', null, 3000),
-            this.exercisesChanged.next(null);
+            this.store.dispatch(new UI.StopLoading);
 
         }));
     }

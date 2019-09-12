@@ -4,7 +4,6 @@ import { StopTrainingComponent } from './stop-training.component';
 import { TrainingService } from '../training.service';
 import { Store} from '@ngrx/store';
 import * as fromTraining from '../training.reducer'
-import { Exercise } from '../exercise.model';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -13,7 +12,6 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./current-training.component.css']
 })
 export class CurrentTrainingComponent implements OnInit {
-  ongoingTraining= false;
   timer: any;
   progress= 0;
   currentExercise;

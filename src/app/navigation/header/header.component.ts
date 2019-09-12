@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import{Subscription, Observable} from 'rxjs'
+import{Observable} from 'rxjs'
 import{Store} from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   isAuth$: Observable<boolean>; 
   constructor(private store : Store<fromRoot.State>, private authService: AuthService) { }
 
-
   ngOnInit() {
     this.isAuth$ = this.store.select(fromRoot.getIsAuthenticated);
   }
@@ -24,5 +23,4 @@ export class HeaderComponent implements OnInit {
   onLogout(){
     this.authService.logout();
   }
-
 }
