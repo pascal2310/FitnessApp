@@ -5,18 +5,18 @@
                 Choose a new training here
             </mat-card-title>
             <mat-card-content fxLayoutAlign="center">
-                <mat-form-field *ngIf="!isLoading && exercises">
+                <mat-form-field *ngIf="!(isLoading$ | async) && exercises$ | async">
                     <mat-label>Select type of training</mat-label>
                     <mat-select ngModel name="exercise" required>
-                        <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
+                        <mat-option *ngFor="let exercise of exercises$ | async" [value]="exercise.id">
                             {{exercise.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </mat-card-content>
             <mat-card-actions fxLayoutAlign="center">
-                <button *ngIf="!isLoading && exercises" mat-raised-button type="submit" [disabled] = "f.invalid">Start</button>
-                <button *ngIf="!exercises" type="button" mat-raised-button (click)="fetchExercises()">Fetch again</button>
+                <button *ngIf="!(isLoading | async) && exercises$ | async" mat-raised-button type="submit" [disabled] = "f.invalid">Start</button>
+                <button *ngIf="!(exercises$ | async)" type="button" mat-raised-button (click)="fetchExercises()">Fetch again</button>
                 <mat-spinner *ngIf="isLoading"></mat-spinner>
             </mat-card-actions>
         </mat-card>

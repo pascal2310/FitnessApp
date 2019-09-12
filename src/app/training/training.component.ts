@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Subscription} from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable} from 'rxjs';
+import{ Store } from '@ngrx/store';
+
 import { TrainingService } from './training.service';
+import * as fromTraining from './training.reducer'
 
 
 @Component({
@@ -8,27 +11,14 @@ import { TrainingService } from './training.service';
   templateUrl: './training.component.html',
   styleUrls: ['./training.component.css']
 })
-export class TrainingComponent implements OnInit, OnDestroy {
-    exerciseSubscription: Subscription;
-    ongoingTraining = false;
-  constructor(private trainingsService : TrainingService) {
+export class TrainingComponent implements OnInit {
+    ongoingTraining$: Observable<boolean>;
+
+  constructor(private store: Store<fromTraining.TrainingState>) {
    }
 
   ngOnInit() {
-    this.exerciseSubscription = this.trainingsService.exerciseChange.subscribe(exercise => {
-      if(exercise){
-        this.ongoingTraining = true;
-      }else{
-        this.ongoingTraining = false;
-      }
-    });
+    this.ongoingTraining$ = this.store.select(fromTraining.getIsTraining)
 
   }
-  
-  ngOnDestroy(){
-    if(this.exerciseSubscription){
-      this.exerciseSubscription.unsubscribe();
-    }
-  }
-
 }
