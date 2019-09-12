@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # FitnessTracker
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.2.
@@ -29,4 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 =======
 # FitnessApp
 Angular course fitnessApp
->>>>>>> af5ad854a0241bfb8e5167f4c5567534e41113e1
+
